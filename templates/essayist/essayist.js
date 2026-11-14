@@ -92,7 +92,9 @@
   };
 
   /* ---------- 1. Dark / Light (light by default, choice remembered) ---------- */
-  if (store.get('nti-theme') === 'dark') root.classList.add('nti-dark');
+  var savedTheme = store.get('nti-theme');   // the reader's choice; with none, follow the device's light/dark setting
+  if (savedTheme === 'dark' || (!savedTheme && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches)) root.classList.add('nti-dark');
+  root.classList.add('nti-ready');   // theme is set: show the page (see the CSS), so it never flashes light first
 
   /* ---------- 3. Subscribe box ---------- */
   var SUB_TITLE = TEXT.subscribeTitle;
@@ -276,13 +278,17 @@
   /* ---------- 2. Essay numbers ---------- */
   function fetchAllPosts(page, acc) {
     var url = 'https://write.as/api/collections/' + BLOG_ALIAS + '/posts?page=' + page;
-    return fetch(url, { headers: { 'Accept': 'application/json' } })
+    // give up on a page after 5 seconds so a slow or failed request never holds the numbers back
+    var timeout = new Promise(function (_, reject) { setTimeout(function () { reject(new Error('timeout')); }, 5000); });
+    return Promise.race([fetch(url, { headers: { 'Accept': 'application/json' } }), timeout])
       .then(function (r) { return r.ok ? r.json() : { data: { posts: [] } }; })
       .then(function (j) {
         var posts = (j && j.data && j.data.posts) || [];
         acc = acc.concat(posts);
         // Write.as returns 10 posts a page; a shorter page is the last one
-        return posts.length >= 10 && page < 50 ? fetchAllPosts(page + 1, acc) : acc;
+        // stop once every post is in, so we never ask Write.as for a page that doesn't exist
+        var total = (j && j.data && j.data.total_posts) || 0;
+        return posts.length >= 10 && acc.length < total && page < 50 ? fetchAllPosts(page + 1, acc) : acc;
       }, function () { return acc; });   // a failed request ends the list with what we have
   }
   if (BLOG_ALIAS.indexOf('PASTE_') !== 0 && window.fetch) {

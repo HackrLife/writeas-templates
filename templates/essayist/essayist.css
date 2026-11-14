@@ -25,6 +25,11 @@
   /* ---- Dark mode colours ---- */
   --bg:#121417;--ink:#e9e7e2;--muted:#9aa0aa;--rule:#2a2e35;--accent:#8fb0ff
 }
+/* ---------- No light flash: the page stays hidden until the script has set light or dark ---------- */
+@keyframes nti-show{to{opacity:1}}
+html:not(.nti-ready) body{opacity:0;animation:nti-show 0s .8s forwards}
+@media (prefers-color-scheme:dark){html:not(.nti-ready){background:#121417}}
+
 body{background:var(--bg)!important;color:var(--ink)!important;font-family:var(--serif)!important;-webkit-font-smoothing:antialiased}
 body script,body style{display:none!important}
 ::selection{background:var(--accent);color:var(--bg)}
