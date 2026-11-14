@@ -1,0 +1,21 @@
+/*
+ * Template name: a theme for Write.as
+ * https://github.com/HackrLife/writeas-templates
+ * By Dev Das. MIT licence.
+ *
+ * Paste into Write.as > your blog > Customize > Custom CSS (Pro).
+ */
+:root{
+  /* ---- Settings: edit freely ---- */
+  --bg:#ffffff;
+  --ink:#16181d;
+  --muted:#5b616e;
+  --accent:#2a5bd7;
+  --font:Georgia,'Times New Roman',serif;
+  --measure:700px
+}
+body{background:var(--bg)!important;color:var(--ink)!important;font-family:var(--font)!important}
+body script,body style{display:none!important}
+
+/* Home page: header#collection header, posts are #collection article.h-entry */
+/* Post page: #post article#post-body, title is h2#title */

@@ -1,0 +1,203 @@
+/*
+ * Essayist: a typographic theme for Write.as
+ * https://github.com/HackrLife/writeas-templates/tree/main/templates/essayist
+ * By Dev Das (blog.dev-das.com). MIT licence.
+ *
+ * Paste into Write.as > your blog > Customize > Custom CSS (Pro).
+ * Light by default; the Dark/Light switch comes from essayist.js.
+ * Widths: change --index (essay column) and --aside (right column) below.
+ */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+:root{
+  /* ---- Settings: edit freely ---- */
+  --bg:#ffffff;          /* page background */
+  --ink:#16181d;         /* text */
+  --muted:#5b616e;       /* summaries, labels, numbers */
+  --rule:#e4e6ea;        /* hairlines */
+  --accent:#2a5bd7;      /* links and hover */
+  --serif:'IBM Plex Serif',Georgia,'Times New Roman',serif;   /* titles and essays */
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;        /* labels and menu */
+  --measure:700px;       /* width of an essay */
+  --index:700px          /* width of the home page list */
+}
+:root.nti-dark{
+  /* ---- Dark mode colours ---- */
+  --bg:#121417;--ink:#e9e7e2;--muted:#9aa0aa;--rule:#2a2e35;--accent:#8fb0ff
+}
+body{background:var(--bg)!important;color:var(--ink)!important;font-family:var(--serif)!important;-webkit-font-smoothing:antialiased}
+body script,body style{display:none!important}
+::selection{background:var(--accent);color:var(--bg)}
+/* ---------- Widths: override Write.as defaults ---------- */
+#wrapper,#collection article,#post article,#subpage article{max-width:none!important}
+/* ---------- Home: the essay index ---------- */
+#collection header{max-width:var(--index)!important;width:auto!important;margin:0 auto!important;padding:2.25rem 1.5rem 3.5rem!important;text-align:left!important}
+#collection #blog-title{font-family:var(--serif)!important;font-size:3rem!important;line-height:1.1!important;font-weight:500!important;letter-spacing:-.015em;margin:0 0 .75rem!important}
+#collection #blog-title a{color:var(--ink)!important;text-decoration:none!important}
+#collection header .description{font-family:var(--serif)!important;font-style:italic;font-size:1.3rem!important;line-height:1.4!important;font-weight:400;color:var(--muted)!important;margin:0!important}
+#collection #wrapper,#subpage #wrapper{max-width:var(--index)!important;width:auto!important;margin:0 auto!important;padding:0 1.5rem!important}
+#collection article.h-entry{display:block!important;padding:2rem 0!important;margin:0!important;border-top:1px solid var(--rule)}
+#collection article .post-title{grid-area:title;font-family:var(--serif)!important;font-size:1.65rem!important;line-height:1.3!important;font-weight:500!important;margin:0 0 .4rem!important}
+#collection article .post-title a{color:var(--ink)!important;text-decoration:none!important}
+#collection article .post-title a:hover{color:var(--accent)!important}
+#collection article time.dt-published,#post #post-body time.dt-published{display:none!important}
+#collection article .nti-num{display:block;font-family:var(--mono)!important;font-size:.78rem!important;letter-spacing:.06em;color:var(--muted)!important;margin:0 0 .6rem}
+#collection article time a{color:inherit!important;text-decoration:none!important}
+#collection article .e-content{grid-area:body;max-width:none;font-size:1.08rem!important;line-height:1.6!important;color:var(--muted)!important;display:-webkit-box!important;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+#collection article .e-content>*:not(p){display:none!important}
+#collection article .e-content p{display:inline;margin:0!important}
+#collection article .e-content p+p::before{content:" "}
+#collection article .e-content br,#collection article .e-content p:empty{display:none!important}
+#collection article .e-content a{color:inherit!important;text-decoration:none!important}
+#collection article .e-content img,#collection article .read-more{display:none!important}
+#paging{max-width:var(--index)!important;margin:0 auto!important;padding:2rem 0!important;border-top:1px solid var(--rule);font-family:var(--mono)!important;font-size:.85rem!important}
+#paging a{color:var(--accent)!important;text-decoration:none!important}
+/* ---------- Essay page ---------- */
+#post header{max-width:var(--measure)!important;margin:0 auto!important;padding:2.5rem 1.5rem 0!important}
+#post #blog-title{font-family:var(--mono)!important;font-size:.8rem!important;font-weight:500!important;letter-spacing:.12em;text-transform:uppercase;margin:0!important}
+#post #blog-title a{color:var(--muted)!important;text-decoration:none!important}
+#post #blog-title a:hover{color:var(--accent)!important}
+#post #post-body{max-width:var(--measure)!important;width:auto!important;margin:0 auto!important;padding:5rem 1.5rem 2rem!important}
+#post #post-body .nti-num{font-family:var(--mono)!important;font-size:.85rem!important;line-height:1.4!important;color:var(--muted)!important;margin:0 0 1rem!important}
+#post #title{font-family:var(--serif)!important;font-size:2.8rem!important;line-height:1.15!important;font-weight:500!important;letter-spacing:-.01em;margin:0 0 2.5rem!important;padding-bottom:2.5rem;border-bottom:1px solid var(--rule)}
+#post #post-body p,#post #post-body li{font-size:1.25rem!important;line-height:1.75!important}
+#post #post-body p{margin:0 0 1.5rem!important}
+#post #post-body .e-content>p:first-of-type{font-size:1.4rem!important;line-height:1.6!important}
+#post #post-body h2:not(#title),#post #post-body h3{font-size:1.3rem!important;font-weight:600!important;margin:3rem 0 1rem!important}
+#post #post-body blockquote{margin:2.75rem 0!important;padding:0!important;border:0!important}
+#post #post-body blockquote p{font-style:italic;font-size:1.55rem!important;line-height:1.45!important;color:var(--ink)!important;margin:0!important}
+#post #post-body a{color:var(--accent)!important;text-underline-offset:3px}
+#post #post-body hr{border:0!important;height:auto;margin:3rem 0!important;text-align:center}
+#post #post-body hr::after{content:"\00B7\00A0\00A0\00B7\00A0\00A0\00B7";color:var(--muted);font-size:1.4rem}
+#post #post-body img{max-width:100%;height:auto;margin:2rem 0}
+/* ---------- Header nav (pinned posts such as About) ---------- */
+#collection header,#post header{display:grid!important;grid-template-columns:minmax(0,1fr) auto;column-gap:1.5rem;align-items:center}
+#collection header nav,#post header nav{display:flex!important;flex-wrap:wrap;gap:1.75rem!important;font-family:var(--mono)!important;font-size:.78rem!important;letter-spacing:.04em;margin:0!important;padding:0!important}
+#collection header nav{grid-column:1 / -1;grid-row:1;justify-self:end;margin:0 0 4.5rem!important}
+#collection #blog-title{grid-column:1 / -1;grid-row:2}
+#collection header .description{grid-column:1 / -1;grid-row:3}
+#post #blog-title{grid-column:1;grid-row:1}
+#post header nav{grid-column:2;grid-row:1}
+header nav a.pinned{color:var(--muted)!important;text-decoration:none!important;margin:0!important}
+header nav a.pinned:hover,header nav a.pinned.selected{color:var(--ink)!important}
+header nav .nti-theme{font-family:var(--mono);font-size:.8rem;color:var(--muted);background:none;border:0;padding:0;margin:0;cursor:pointer}
+header nav .nti-theme:hover{color:var(--ink)}
+header nav a.pinned,header nav .nti-theme{padding:0!important;margin:0!important;white-space:nowrap}
+header nav .nti-theme:focus{outline:none}
+header nav .nti-theme:focus-visible,header nav a:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:2px}
+#post #post-body ul,#post #post-body ol{padding-left:1.25rem!important;margin:0 0 1.5rem!important}
+#post #post-body li{margin:0 0 .5rem}
+/* ---------- Subscribe box (inserted by the Custom JavaScript) ---------- */
+#collection .nti-subscribe{max-width:40rem;margin:3rem 0 0!important}
+#post #post-body .nti-subscribe,#collection .nti-subscribe{margin:4rem 0 0!important;padding:2.5rem 0 0!important;border-top:1px solid var(--rule)}
+#post #post-body .nti-subscribe .nti-sub-label,#collection .nti-subscribe .nti-sub-label{font-family:var(--mono)!important;font-size:.75rem!important;line-height:1.4!important;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)!important;margin:0 0 .75rem!important}
+#post #post-body .nti-subscribe .nti-sub-title,#collection .nti-subscribe .nti-sub-title{display:block!important;font-family:var(--serif)!important;font-size:1.5rem!important;line-height:1.3!important;font-weight:500!important;color:var(--ink)!important;margin:0 0 1.5rem!important}
+#post #post-body .nti-subscribe .nti-sub-form,#collection .nti-subscribe .nti-sub-form{display:flex;flex-wrap:wrap;gap:.75rem;margin:0}
+#post #post-body .nti-subscribe .nti-sub-form input,#collection .nti-subscribe .nti-sub-form input{flex:1 1 16rem;min-height:48px;box-sizing:border-box;padding:0 1rem;font-family:var(--serif);font-size:1rem;color:var(--ink);background:var(--bg);border:1px solid var(--muted);border-radius:4px}
+#post #post-body .nti-subscribe .nti-sub-form input:focus,#collection .nti-subscribe .nti-sub-form input:focus{outline:2px solid var(--accent);outline-offset:1px}
+#post #post-body .nti-subscribe .nti-sub-form button,#collection .nti-subscribe .nti-sub-form button{min-height:48px;padding:0 1.5rem;font-family:var(--mono);font-size:.85rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--bg);background:var(--ink);border:0;border-radius:4px;cursor:pointer}
+#post #post-body .nti-subscribe .nti-sub-form button:hover,#collection .nti-subscribe .nti-sub-form button:hover{background:var(--accent)}
+#post #post-body .nti-subscribe .nti-sub-note,#collection .nti-subscribe .nti-sub-note{font-family:var(--mono)!important;font-size:.75rem!important;line-height:1.5!important;color:var(--muted)!important;margin:1rem 0 0!important}
+#post #post-body .nti-subscribe .nti-sub-sr,#collection .nti-subscribe .nti-sub-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* ---------- Fonts: replace Write.as defaults everywhere in the content ---------- */
+#collection article,#collection article *,#post article,#post article p,#post article li,#post article blockquote,.norm,.norm *{font-family:var(--serif)!important}
+#collection article .nti-num,#post article .nti-num,#post #post-body .nti-subscribe .nti-sub-label,#post #post-body .nti-subscribe .nti-sub-note,#post #post-body .nti-subscribe button{font-family:var(--mono)!important}
+/* ---------- Owner-only controls (edit, pin, delete, move to) ---------- */
+#collection article .post-title a:not(:first-child),#collection article .post-title .actions,#collection article .actions a,#collection article select,#collection article .post-title select{font-family:var(--mono)!important;font-size:.72rem!important;font-weight:400!important;color:var(--muted)!important;margin-left:.75rem!important;vertical-align:middle}
+/* ---------- Write.as built-in email subscribe form, styled to match ---------- */
+#collection :has(> form input[type="email"]):not(.nti-subscribe),#subpage :has(> form input[type="email"]):not(.nti-subscribe){width:min(var(--index),calc(100% - 2.5rem))!important;max-width:none!important;margin:4rem auto 0!important;padding:2.5rem 0 0!important;border-top:1px solid var(--rule);text-align:left!important;box-sizing:border-box!important}
+#post :has(> form input[type="email"]):not(.nti-subscribe){width:min(var(--measure),calc(100% - 2.5rem))!important;max-width:none!important;margin:4rem auto 0!important;padding:2.5rem 0 0!important;border-top:1px solid var(--rule);text-align:left!important;box-sizing:border-box!important}
+:has(> form input[type="email"]):not(.nti-subscribe)>*:not(form):not(script):not(style),form:has(input[type="email"])>*:not(input):not(button):not([type="hidden"]):not(script):not(style){display:block!important;flex:0 0 100%!important;width:100%!important;font-family:var(--serif)!important;font-size:1.5rem!important;line-height:1.3!important;color:var(--ink)!important;margin:0 0 1.25rem!important;text-align:left!important}
+form:has(input[type="email"]){display:flex!important;flex-wrap:wrap!important;align-items:stretch;gap:.75rem!important;justify-content:flex-start!important;max-width:36rem;margin:0!important;text-align:left!important}
+form:has(input[type="email"]) input[type="email"]{flex:1 1 16rem!important;width:auto!important;min-height:48px;box-sizing:border-box;padding:0 1rem!important;font-family:var(--serif)!important;font-size:1rem!important;color:var(--ink)!important;background:var(--bg)!important;border:1px solid var(--muted)!important;border-radius:4px!important;margin:0!important}
+form:has(input[type="email"]) input[type="submit"],form:has(input[type="email"]) button{flex:0 0 auto!important;min-height:48px;padding:0 1.5rem!important;font-family:var(--mono)!important;font-size:.8rem!important;font-weight:500!important;letter-spacing:.08em;text-transform:uppercase;color:var(--bg)!important;background:var(--ink)!important;border:0!important;border-radius:4px!important;cursor:pointer;margin:0!important}
+form:has(input[type="email"]) input[type="submit"]:hover,form:has(input[type="email"]) button:hover{background:var(--accent)!important}
+/* ---------- Home page with the right-hand column (added by the Custom JavaScript) ---------- */
+:root,.wa{--aside:250px;/* right-hand column width */--gap:7rem;/* space between the columns */--page:calc(var(--index) + var(--gap) + var(--aside))}
+#collection.nti-has-aside header{max-width:var(--page)!important}
+#collection.nti-has-aside footer{width:min(var(--page),calc(100% - 2.5rem))!important}
+body .nti-layout{display:flex;align-items:flex-start;gap:var(--gap);max-width:var(--page);margin:0 auto;padding:0 1.5rem;box-sizing:content-box}
+#collection .nti-layout #wrapper,body .nti-layout .nti-main{flex:0 1 var(--index);min-width:0;max-width:var(--index)!important;margin:0!important;padding:0!important}
+#collection #wrapper :has(> form input[type="email"]):not(.nti-subscribe){width:auto!important;margin:4rem 0 0!important}
+body .nti-aside{flex:0 0 var(--aside);width:var(--aside);min-width:0;max-width:var(--aside);box-sizing:border-box;position:static;border-top:1px solid var(--rule);padding-top:2rem;font-family:var(--serif)}
+body .nti-aside .nti-me-photo{display:block;width:88px;height:88px;border-radius:50%;object-fit:cover;filter:grayscale(1);margin:0 0 1.25rem}
+body .nti-aside .nti-me-initials{display:flex;align-items:center;justify-content:center;width:88px;height:88px;border-radius:50%;background:var(--rule);color:var(--muted);font-family:var(--mono);font-size:1rem;letter-spacing:.06em;margin:0 0 1.25rem}
+body .nti-aside .nti-me-name{font-family:var(--serif)!important;font-size:1.2rem!important;line-height:1.3!important;font-weight:500!important;color:var(--ink)!important;margin:0 0 .5rem!important}
+body .nti-aside .nti-me-bio{font-family:var(--serif)!important;font-size:.98rem!important;line-height:1.6!important;color:var(--muted)!important;margin:0 0 .9rem!important}
+body .nti-aside .nti-me-link{font-family:var(--mono)!important;font-size:.75rem!important;letter-spacing:.04em;color:var(--accent)!important;text-decoration:none!important}
+body .nti-aside .nti-roll{margin:3rem 0 0;padding:2.25rem 0 0;border-top:1px solid var(--rule)}
+body .nti-aside .nti-roll-label{font-family:var(--mono)!important;font-size:.72rem!important;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)!important;margin:0 0 1.25rem!important}
+body .nti-aside .nti-roll ul{list-style:none!important;padding:0!important;margin:0!important}
+body .nti-aside .nti-roll li{margin:0 0 1.4rem!important;padding:0!important}
+body .nti-aside .nti-roll a{display:block;font-family:var(--serif)!important;font-size:1rem!important;line-height:1.35!important;color:var(--ink)!important;text-decoration:none!important}
+body .nti-aside .nti-roll a:hover{color:var(--accent)!important}
+body .nti-aside .nti-roll a span{display:block;font-family:var(--mono)!important;font-size:.7rem!important;color:var(--muted)!important;margin-top:.15rem}
+body .nti-aside .nti-media-item{margin:0 0 2.25rem}
+body .nti-aside .nti-media-item iframe{display:block;width:100%;border:0;border-radius:10px;background:var(--rule)}
+body .nti-aside .nti-media-item .nti-media-yt{aspect-ratio:16/9;height:auto}
+body .nti-aside .nti-media-links{display:flex;gap:1.25rem;margin:.75rem 0 0!important}
+body .nti-aside .nti-media-links a{font-family:var(--mono)!important;font-size:.75rem!important;letter-spacing:.04em;color:var(--muted)!important;text-decoration:none!important}
+body .nti-aside .nti-media-links a:hover{color:var(--accent)!important}
+body .nti-aside .nti-media-title{font-family:var(--serif)!important;font-size:.95rem!important;line-height:1.45!important;color:var(--muted)!important;margin:.6rem 0 0!important}
+body .nti-aside .nti-mock{display:flex;align-items:center;gap:.9rem;box-sizing:border-box;width:100%;border-radius:10px;background:var(--rule);padding:1rem}
+body .nti-aside .nti-mock-sp{height:152px;align-items:flex-start;flex-wrap:wrap;align-content:space-between}
+body .nti-aside .nti-mock-art{width:64px;height:64px;border-radius:6px;background:var(--muted);opacity:.35}
+body .nti-aside .nti-mock-sp .nti-mock-text{flex:1 1 0;min-width:0}
+body .nti-aside .nti-mock-sp .nti-mock-play{margin-left:auto}
+body .nti-aside .nti-mock-video{aspect-ratio:16/9;justify-content:center;padding:0}
+body .nti-aside .nti-mock-play{flex:0 0 auto;width:40px;height:40px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center}
+body .nti-aside .nti-mock-text{font-family:var(--serif);font-size:.9rem;line-height:1.35;color:var(--ink)}
+body .nti-aside .nti-mock-text span{display:block;font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-top:.2rem}
+body .nti-aside .nti-pod{display:flex!important;align-items:center;gap:.85rem;min-width:0;max-width:100%;text-decoration:none!important;color:var(--ink)!important}
+body .nti-aside .nti-pod-art{flex:0 0 auto;width:48px;height:48px;border-radius:50%;overflow:hidden;background:var(--rule);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+body .nti-aside .nti-pod-art img{width:100%;height:100%;object-fit:cover;display:block}
+body .nti-aside .nti-pod-text{flex:1 1 auto;min-width:0;display:block}
+body .nti-aside .nti-pod-title{display:block;font-family:var(--serif)!important;font-size:.95rem!important;line-height:1.3!important;color:var(--ink)!important;overflow:hidden;display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+body .nti-aside .nti-pod-sub{display:block;font-family:var(--mono)!important;font-size:.7rem!important;color:var(--muted)!important;margin-top:.2rem}
+body .nti-aside .nti-pod-play{flex:0 0 auto;width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--bg);display:flex;align-items:center;justify-content:center;transition:background .15s}
+body .nti-aside .nti-pod:hover .nti-pod-play{background:var(--accent)}
+body .nti-aside .nti-pod:hover .nti-pod-title{color:var(--accent)!important}
+#post #post-body .nti-who{display:flex;align-items:flex-start;gap:1.5rem;margin:0 0 1.5rem}
+#post #post-body .nti-who p{margin:0!important}
+#post #post-body .nti-who-photo{flex:0 0 auto;width:72px;height:72px;border-radius:50%;object-fit:cover;margin:.35rem 0 0!important;display:block}
+#post #post-body .nti-who-initials{display:flex;align-items:center;justify-content:center;background:var(--rule);color:var(--muted);font-family:var(--mono)!important;font-size:.85rem;letter-spacing:.06em}
+@media (max-width:640px){#post #post-body .nti-who{gap:1rem}#post #post-body .nti-who-photo{width:56px;height:56px}}
+#post .nti-about-photo,#post .nti-about-initials{display:block;width:120px;height:120px;border-radius:50%;object-fit:cover;filter:grayscale(1);margin:0 0 2rem}
+#post .nti-about-initials{display:flex;align-items:center;justify-content:center;background:var(--rule);color:var(--muted);font-family:var(--mono);font-size:1.2rem;letter-spacing:.06em}
+#post.nti-has-aside header{max-width:var(--page)!important}
+#post.nti-has-aside footer{width:min(var(--page),calc(100% - 2.5rem))!important}
+#post .nti-layout #post-body{max-width:none!important;width:auto!important;margin:0!important;padding:5rem 0 2rem!important}
+body .nti-main :has(> form input[type="email"]):not(.nti-subscribe){width:auto!important;margin:4rem 0 0!important}
+#post .nti-aside{margin-top:5rem}
+body .nti-aside .nti-roll-first{margin-top:0!important;padding-top:0!important;border-top:0!important}
+@media (max-width:1100px){
+#collection.nti-has-aside header,#post.nti-has-aside header{max-width:var(--index)!important}
+#collection.nti-has-aside footer,#post.nti-has-aside footer{width:min(var(--index),calc(100% - 2.5rem))!important}
+#post .nti-aside{margin-top:0}
+body .nti-layout{flex-direction:column;gap:3.5rem;max-width:var(--index)}
+body .nti-layout #wrapper,body .nti-layout .nti-main{flex:none;width:100%}
+body .nti-aside{position:static;flex:none;width:100%;max-width:none;box-sizing:border-box;border-top:0!important;padding-top:0!important}
+}
+@media (max-width:640px){body .nti-layout{padding:0 1.25rem}}
+/* ---------- Footer ---------- */
+footer{width:min(var(--index),calc(100% - 2.5rem))!important;max-width:none!important;box-sizing:border-box!important;text-align:left!important;margin:4rem auto 0!important;padding:2rem 0 4rem!important;font-family:var(--mono)!important;font-size:.75rem!important;color:var(--muted)!important}
+#post footer{width:min(var(--measure),calc(100% - 2.5rem))!important}
+footer nav,footer p{text-align:left!important;margin:0!important;padding:0!important}
+footer hr{display:none}
+footer a{color:var(--muted)!important}
+/* ---------- Phone ---------- */
+@media (max-width:640px){
+#collection header{padding:1.75rem 1.25rem 2.5rem!important}
+#collection #blog-title{font-size:2.1rem!important}
+#collection header .description{font-size:1.1rem!important}
+#collection header nav{justify-self:start;margin:0 0 3rem!important;gap:1.25rem!important}
+#post header{grid-template-columns:1fr;row-gap:.75rem}
+#post header nav{grid-column:1;grid-row:2}
+#collection #wrapper{padding-left:1.25rem!important;padding-right:1.25rem!important}
+#collection .nti-layout #wrapper{padding:0!important}
+#post header{padding:1.75rem 1.25rem 0!important}
+#post #post-body{padding-top:3rem!important}
+#post #title{font-size:2.1rem!important}
+#post #post-body p{font-size:1.12rem!important}
+#post #post-body .e-content>p:first-of-type{font-size:1.25rem!important}
+}
