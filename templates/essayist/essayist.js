@@ -131,6 +131,57 @@
     if (wrapper && !document.getElementById('subscribe')) wrapper.appendChild(subscribeBox('-home'));
   }
 
+  /* ---------- Share links at the end of each essay ---------- */
+  var SHARE = ['x', 'linkedin', 'whatsapp', 'email', 'copy'];   // remove any you don't want; order is kept
+  if (isPost && SKIP_PAGES.indexOf(currentSlug) === -1 && SHARE.length && !document.querySelector('.nti-share')) {
+    var shareBody = document.getElementById('post-body');
+    if (shareBody) {
+      var canon = document.querySelector('link[rel="canonical"]');
+      var pageUrl = (canon && canon.href) || (location.origin + location.pathname);
+      var titleEl = document.getElementById('title');
+      var pageTitle = ((titleEl && titleEl.textContent) || document.title).trim();
+      var u = encodeURIComponent(pageUrl), t = encodeURIComponent(pageTitle);
+      var targets = {
+        x:        ['X', 'https://x.com/intent/post?text=' + t + '&url=' + u],
+        linkedin: ['LinkedIn', 'https://www.linkedin.com/sharing/share-offsite/?url=' + u],
+        whatsapp: ['WhatsApp', 'https://wa.me/?text=' + t + '%20' + u],
+        email:    ['Email', 'mailto:?subject=' + t + '&body=' + t + '%0A%0A' + u]
+      };
+      var bar = document.createElement('div');
+      bar.className = 'nti-share';
+      bar.innerHTML = '<span class="nti-share-label">Share</span>';
+      SHARE.forEach(function (key) {
+        if (targets[key]) {
+          var a = document.createElement('a');
+          a.href = targets[key][1];
+          a.textContent = targets[key][0];
+          if (key !== 'email') { a.target = '_blank'; a.rel = 'noopener'; }
+          bar.appendChild(a);
+        } else if (key === 'copy') {
+          var cp = document.createElement('button');
+          cp.type = 'button';
+          cp.textContent = 'Copy link';
+          cp.addEventListener('click', function () {
+            var done = function () { cp.textContent = 'Copied'; setTimeout(function () { cp.textContent = 'Copy link'; }, 2000); };
+            if (navigator.clipboard) navigator.clipboard.writeText(pageUrl).then(done, function () { prompt('Copy this link:', pageUrl); });
+            else prompt('Copy this link:', pageUrl);
+          });
+          bar.appendChild(cp);
+        }
+      });
+      // phones: one more button that opens the phone's own share sheet (Messages, Instagram, Slack ...)
+      if (navigator.share && window.matchMedia && matchMedia('(pointer: coarse)').matches) {
+        var more = document.createElement('button');
+        more.type = 'button';
+        more.textContent = 'More';
+        more.addEventListener('click', function () { navigator.share({ title: pageTitle, url: pageUrl }).catch(function () {}); });
+        bar.appendChild(more);
+      }
+      var subInside = shareBody.querySelector('#subscribe');
+      if (subInside) shareBody.insertBefore(bar, subInside); else shareBody.appendChild(bar);
+    }
+  }
+
   /* ---------- Right-hand column (home page and every essay page) ---------- */
   function esc(t) { var d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
   var spotify = function (u) {

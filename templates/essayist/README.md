@@ -13,6 +13,7 @@ Built for [Notes To The Internet](https://blog.dev-das.com) by Dev Das.
 - **A typographic home page.** The blog title, a one-line strap, then each essay as a title and a four-line summary. No images or cards.
 - **Numbers instead of dates.** Essays show `#1`, `#2` … counted from your first, so a gap between posts never shows.
 - **A right-hand column.** A podcast card on every page, a reading list of other writers on the home page, and your own other essays on each essay page. The essay list builds itself.
+- **Share links.** X, LinkedIn, WhatsApp, Email and Copy link under every essay; on phones, a **More** button opens the phone's own share menu.
 - **Subscribe everywhere.** One line and an email field at the end of each essay, connected to Write.as's own newsletter.
 - **About page with your photo.** A small round photo beside your "Who am I?" paragraph.
 - **Light by default, with a Dark switch.** The reader's choice is remembered.
@@ -48,6 +49,7 @@ Everything is editable. Settings sit at the top of each file, so nothing below t
 | `PODCAST.spotify` | Your show's Spotify link (Share → Copy link to show). Leave `''` to hide the podcast card. |
 | `PODCAST.title` | Optional name for the card. Leave `''` to use the show's name from Spotify. |
 | `READING` | Ten placeholder lines, `['Blog 1', 'https://example.com']`. Replace each name and address with blogs you read; add or remove lines. |
+| `SHARE` | The share links under each essay: `'x'`, `'linkedin'`, `'whatsapp'`, `'email'`, `'copy'`. Remove any you don't want; they show in this order. |
 | `OPTIONS` | Switch essay numbers on or off, set how many of your other essays to list (0 hides the list), hide the Dark switch, and set your About page's address. |
 | `TEXT` | Every word the theme shows: menu labels, subscribe line, button, section headings and the number prefix. Rewrite them in your own voice or language. |
 | `FORM_ACTION` | Leave as is to use Write.as's newsletter. To use another email provider, paste its form address here. |

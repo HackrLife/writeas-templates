@@ -8,7 +8,7 @@ Each template is a folder with its own CSS, JavaScript, screenshots and setup gu
 
 | | Template | Made for | Highlights |
 |---|---|---|---|
-| [![Essayist](templates/essayist/screenshots/home.jpg)](templates/essayist) | **[Essayist](templates/essayist)** | Essay and long-form blogs | Typographic layout, numbered essays instead of dates, right-hand reading list and podcast card, subscribe box, About photo, dark mode, mobile ready |
+| [![Essayist](templates/essayist/screenshots/home.jpg)](templates/essayist) | **[Essayist](templates/essayist)** | Essay and long-form blogs | Typographic layout, numbered essays instead of dates, right-hand reading list and podcast card, share links, subscribe box, About photo, dark mode, mobile ready |
 
 More templates are on the way. Watch or star this repository to hear when a new one lands.
 

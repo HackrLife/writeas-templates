@@ -206,3 +206,10 @@ footer a{color:var(--muted)!important}
 #post #post-body p{font-size:1.12rem!important}
 #post #post-body .e-content>p:first-of-type{font-size:1.25rem!important}
 }
+/* ---------- Share links at the end of each essay ---------- */
+#post #post-body .nti-share{display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem 1.4rem;margin:3.5rem 0 0!important;padding:1.5rem 0 0!important;border-top:1px solid var(--rule);font-family:var(--mono)!important;font-size:.85rem!important;line-height:1.6!important}
+#post #post-body .nti-share .nti-share-label{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+#post #post-body .nti-share a,#post #post-body .nti-share button{font:inherit;color:var(--ink)!important;background:none;border:0;border-bottom:1px solid var(--rule);padding:0 0 1px;text-decoration:none!important;cursor:pointer}
+#post #post-body .nti-share a:hover,#post #post-body .nti-share button:hover{color:var(--accent)!important;border-bottom-color:var(--accent)}
+#post #post-body .nti-share a:focus-visible,#post #post-body .nti-share button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+#post #post-body .nti-share + .nti-subscribe{margin-top:2.5rem!important}
