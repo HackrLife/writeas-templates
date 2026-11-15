@@ -327,6 +327,7 @@
   }
 
   /* ---------- 2. Essay numbers ---------- */
+  var postTotal = 0;   // how many posts the blog has, as Write.as reports it
   function fetchAllPosts(page, acc) {
     var url = 'https://write.as/api/collections/' + BLOG_ALIAS + '/posts?page=' + page;
     // give up on a page after 5 seconds so a slow or failed request never holds the numbers back
@@ -339,6 +340,7 @@
         // Write.as returns 10 posts a page; a shorter page is the last one
         // stop once every post is in, so we never ask Write.as for a page that doesn't exist
         var total = (j && j.data && j.data.total_posts) || 0;
+        if (page === 1) postTotal = total;
         return posts.length >= 10 && acc.length < total && page < 50 ? fetchAllPosts(page + 1, acc) : acc;
       }, function () { return acc; });   // a failed request ends the list with what we have
   }
@@ -346,9 +348,14 @@
     fetchAllPosts(1, []).then(function (posts) {
       var essays = posts
         .filter(function (p) { return p.slug && SKIP_PAGES.indexOf(p.slug.toLowerCase()) === -1; })
-        .sort(function (a, b) { return new Date(a.created) - new Date(b.created); });
+        .sort(function (a, b) { return new Date(b.created) - new Date(a.created); });   // newest first
+      // Count down from the total, so the numbers stay right even if some older pages fail to load
+      var count = Math.max(postTotal - (posts.length - essays.length), essays.length);
       var num = {};
-      essays.forEach(function (p, i) { num[p.slug.toLowerCase()] = i + 1; });
+      essays.forEach(function (p, i) { num[p.slug.toLowerCase()] = count - i; });
+      // remember the numbers, so a failed request next time still shows them
+      if (essays.length) store.set('nti-nums-' + BLOG_ALIAS, JSON.stringify(num));
+      else { try { num = JSON.parse(store.get('nti-nums-' + BLOG_ALIAS)) || {}; } catch (e) { num = {}; } }
 
       if (isIndex && OPTIONS.numbers) {
         Array.prototype.forEach.call(document.querySelectorAll('#wrapper article.h-entry'), function (art) {
@@ -363,7 +370,7 @@
         });
       }
       if (postAside && essays.length && OPTIONS.moreEssays > 0) {
-        var others = essays.filter(function (p) { return p.slug.toLowerCase() !== currentSlug; }).reverse().slice(0, OPTIONS.moreEssays);
+        var others = essays.filter(function (p) { return p.slug.toLowerCase() !== currentSlug; }).slice(0, OPTIONS.moreEssays);
         if (others.length) {
           var slot = postAside.querySelector('.nti-roll');
           slot.innerHTML = '<p class="nti-roll-label">' + esc(TEXT.moreEssays) + '</p><ul>' + others.map(function (p) {
